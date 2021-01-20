@@ -11,14 +11,38 @@ public class Main {
 
         Stack<Equation> gcdResolvingHistory = m.calculateGCD(a,b);
 
-        for(Equation equ : gcdResolvingHistory)
-        {
+        for(Equation equ : gcdResolvingHistory) {
             System.out.println(equ);
         }
 
         Equation gcdEquation = m.lookupGCD(gcdResolvingHistory);
-
         System.out.println("gcd: " + gcdEquation.r);
+
+        Matrix22 resultMatrix = m.calculateMatrix(gcdResolvingHistory);
+
+        System.out.println();
+        System.out.println("Final matrix result " + resultMatrix);
+    }
+
+    private Matrix22 calculateMatrix(Stack<Equation> gcdResults){
+        Stack<Matrix22> matrices = new Stack<Matrix22>();
+
+        for(Equation equ : gcdResults) {
+            matrices.push(new Matrix22(0,1,1,-equ.b));
+        }
+
+        Matrix22 result = null;
+
+        for(Matrix22 matrix : matrices) {
+            if(result == null){
+                result = matrix;
+            }
+            else{
+                result = result.mul(matrix);
+            }
+        }
+
+        return result;
     }
 
     private Stack<Equation> calculateGCD(int a, int c) {
