@@ -9,19 +9,19 @@ public class Main {
         int a = 547;
         int b = 23;
 
-        Stack<Equation> results = m.applyAlgorithm(a,b);
+        Stack<Equation> gcdResolvingHistory = m.calculateGCD(a,b);
 
-        for(Equation equ : results)
+        for(Equation equ : gcdResolvingHistory)
         {
             System.out.println(equ);
         }
 
-        Equation gcdEquation = m.getGCD(results);
+        Equation gcdEquation = m.lookupGCD(gcdResolvingHistory);
 
         System.out.println("gcd: " + gcdEquation.r);
     }
 
-    private Stack<Equation> applyAlgorithm(int a, int c) {
+    private Stack<Equation> calculateGCD(int a, int c) {
 
         int eA = a, eC = c;
 
@@ -43,7 +43,7 @@ public class Main {
 
     // Determines the equation with the greatest common divisor (German: ggT = größter gemeinsamer Teiler).
     // Get the gcd by just accessing r in your equation then.
-    private Equation getGCD(Stack<Equation> equations) {
+    private Equation lookupGCD(Stack<Equation> equations) {
 
         int firstElementsR = equations.lastElement().r;
 
