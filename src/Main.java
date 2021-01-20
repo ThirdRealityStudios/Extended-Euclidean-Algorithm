@@ -43,6 +43,7 @@ public class Main {
 
     // Determines the equation with the greatest common divisor (German: ggT = größter gemeinsamer Teiler).
     // Get the gcd by just accessing r in your equation then.
+    // Note! The gcd (r) is always contained in the last equation where r is not 0 (zero).
     private Equation lookupGCD(Stack<Equation> equations) {
 
         int firstElementsR = equations.lastElement().r;
