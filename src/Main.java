@@ -11,6 +11,7 @@ public class Main {
 
         Stack<Equation> gcdResolvingHistory = m.calculateGCD(a,b);
 
+        // Just print the results from the stack.
         for(Equation equ : gcdResolvingHistory) {
             System.out.println(equ);
         }
@@ -30,6 +31,31 @@ public class Main {
 
         System.out.println();
         System.out.println("Final matrix result " + finalResult);
+
+        int[] remainders = m.popRemainders(gcdResolvingHistory);
+
+        m.print(remainders);
+    }
+
+    private void print(int[] source) {
+        System.out.println("Remainders: ");
+        for(int i : source) {
+            System.out.print(i + " | ");
+        }
+    }
+
+    private int[] popRemainders(Stack<Equation> equations){
+
+        int size = equations.size();
+        int sizeIgnoringZeroes = equations.get(size-1).r == 0 ? size-1 : size;
+
+        int[] remainders = new int[sizeIgnoringZeroes];
+
+        for(int i = 0; i < sizeIgnoringZeroes; i++) {
+            remainders[i] = equations.get(i).r;
+        }
+
+        return remainders;
     }
 
     private Matrix22 calculateMatrix(Stack<Equation> gcdResults){
