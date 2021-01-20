@@ -41,7 +41,7 @@ public class Main {
         return equations;
     }
 
-    // Determines the equation greatest common divisor (German: ggT = größter gemeinsamer Teiler).
+    // Determines the equation with the greatest common divisor (German: ggT = größter gemeinsamer Teiler).
     // Get the gcd by just accessing r in your equation then.
     private Equation getGCD(Stack<Equation> equations) {
 
