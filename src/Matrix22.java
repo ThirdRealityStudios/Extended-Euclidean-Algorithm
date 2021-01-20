@@ -11,6 +11,15 @@ public class Matrix22 {
         this.y1 = y1;
     }
 
+    public Matrix21 mulWithMatrix21(Matrix21 factor) {
+        Matrix21 copy = new Matrix21(factor.x0, factor.x1);
+
+        copy.x0 = factor.x0 * this.x0 + factor.x1 * this.y0;
+        copy.x1 = factor.x0 * this.x1 + factor.x1 * this.y1;
+
+        return copy;
+    }
+
     public Matrix22 mul(int x0, int y0, int x1, int y1) {
         Matrix22 copy = new Matrix22(this.x0, this.x1, this.y0, this.y1);
 

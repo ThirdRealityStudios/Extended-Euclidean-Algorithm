@@ -18,10 +18,18 @@ public class Main {
         Equation gcdEquation = m.lookupGCD(gcdResolvingHistory);
         System.out.println("gcd: " + gcdEquation.r);
 
-        Matrix22 resultMatrix = m.calculateMatrix(gcdResolvingHistory);
+        // Here it pre-calculates the last missing results by using matrices.
+        // Instead, you could also do it by using "normal" equations but here I just did it this way.
+        // If you know roughly how to handle matrices, this approach might be easier for you (at least it is for me).
+        // A German example (calculator) you can find here online: https://www.arndt-bruenner.de/mathe/scripts/erweitertereuklid.htm
+        // Or here in English: https://www.dcode.fr/extended-gcd
+        Matrix22 temporaryMatrixResult = m.calculateMatrix(gcdResolvingHistory);
+
+        // Here it uses the last result to multiply it with (a b) in a matrix (integer values from the beginning).
+        Matrix21 finalResult = temporaryMatrixResult.mulWithMatrix21(new Matrix21(a,b));
 
         System.out.println();
-        System.out.println("Final matrix result " + resultMatrix);
+        System.out.println("Final matrix result " + finalResult);
     }
 
     private Matrix22 calculateMatrix(Stack<Equation> gcdResults){
